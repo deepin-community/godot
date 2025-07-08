@@ -1,5 +1,127 @@
-template-repository (1.0-1) unstable; urgency=medium
+godot (3.6+ds-2) unstable; urgency=medium
 
-  * Initial release
+  [ Travis Wrightsman ]
+  * Allow autopkgtest to fail on some architectures
+  * Remove after_script workarounds after upstream fix
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Otto Kekäläinen <otto@debian.org>  Mon, 30 Dec 2024 21:13:41 -0800
+
+godot (3.6+ds-1) unstable; urgency=medium
+
+  [ Travis Wrightsman ]
+  * New upstream version 3.6+ds (Related: #1070845)
+  * Add autopkgtests
+  * Migrate metainfo and icon to modern freedesktop paths
+  * Install godot3 man page
+  * Unvendor as many dependencies as currently possible
+  * Replace custom_build suffix with Debian version
+  * Namespace everything to major version 3
+  * Namespace StartupWMClass to major version too
+  * Add myself to d/copyright
+  * Update VCS URL salsa.debian.org/games-team/godot3
+
+  [ Otto Kekäläinen ]
+  * Enable Salsa CI to improve quality assurance prior to upload
+  * Add myself to copyright and uploader while sponsoring Travis' work
+
+ -- Otto Kekäläinen <otto@debian.org>  Mon, 16 Dec 2024 16:13:02 -0800
+
+godot (3.5.2-stable-2) unstable; urgency=medium
+
+  * Team upload.
+
+  * Adjusted d/rules scons call to try to get the build working on
+    ppc64le.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Wed, 21 Jun 2023 16:37:46 +0200
+
+godot (3.5.2-stable-1) unstable; urgency=medium
+
+  * Team upload.
+
+  * Added d/gbp.conf to enforce use of pristine-tar.
+  * New upstream version 3.5.2-stable.
+  * Disable modules raycast and lightmapper_cpu on s390x (Closes: #1037985).
+
+ -- Petter Reinholdtsen <pere@debian.org>  Thu, 15 Jun 2023 18:51:07 +0200
+
+godot (3.5.1-stable-2) unstable; urgency=medium
+
+  * Team upload.
+
+  * Adjusted build rules to link with libatomic on armel and riscv64.
+    (Closes: #1019868)
+  * Disabled building denoise module on platforms where OIDN fail to build.
+    (Closes: #1031132)
+  * Updated build dependencies based on feedback from lintian.
+  * Adjusted d/copyright to list CC0 license for appstream metadata XML file.
+  * Adjusted install rules to install both appstream metadata and XSD
+    MIME rules.
+  * Updated Standards-Version from 4.6.0 to 4.6.2.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Wed, 14 Jun 2023 15:36:52 +0200
+
+godot (3.5.1-stable-1) unstable; urgency=medium
+
+  [ Federico Ceratto ]
+  * New upstream release (Closes: #1019931)
+  * Set supported architectures (Closes: #978567)
+  * Update third-party libraries in d/copyright
+
+  [ Dominik George ]
+  * New upstream version
+    + CVE-2021-26825/CVE-2021-26826 (Closes: #982593)
+  * Bump Standards-Version (no changes needed)
+  * Fixes to d/copyright
+    + Fix invalid file patterns
+    + Remove superfluous fiels (not in source tree anymore)
+
+ -- Dominik George <natureshadow@debian.org>  Sat, 28 Jan 2023 23:38:55 +0100
+
+godot (3.2.3-stable-1) unstable; urgency=medium
+
+  [ Federico Ceratto ]
+  * New upstream release
+
+  [ Dominik George ]
+  * New upstream release
+  * Drop ca-certs path patch
+    + Use system_certs_path build option instead
+  * Bump Standards-Version
+    + No changes needed
+  * Install icon (Closes: #956684)
+  * Add myself to Uploaders to trak package
+  * Remove some more files after scons generation in dh_clean
+  * Thanks to Teckids e.V. and credativ GmbH for sponsoring the work
+
+ -- Dominik George <natureshadow@debian.org>  Wed, 28 Oct 2020 13:56:05 +0100
+
+godot (3.2-stable-2) unstable; urgency=medium
+
+  * Team upload
+  * Remove build-deps libgcc-8-dev, libstdc++-8-dev (Closes: #944168)
+  * Clean .sconsign?.dblite because .sconsign5.dblite prevents the build
+    (Closes: #954608)
+
+ -- Juhani Numminen <juhaninumminen0@gmail.com>  Wed, 25 Mar 2020 10:49:15 +0200
+
+godot (3.2-stable-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Federico Ceratto <federico@debian.org>  Fri, 28 Feb 2020 22:22:59 +0000
+
+godot (3.0.6-2) unstable; urgency=medium
+
+  * Switch to source format 3.0 (Closes: #914617)
+  * Remove binary dependencies, thanks  Jeremy Bicha (Closes: #914618)
+  * Support 32-bit architectures (Closes: #914609, #914620, #914624)
+
+ -- Federico Ceratto <federico@debian.org>  Sat, 01 Dec 2018 21:04:44 +0000
+
+godot (3.0.6-1) unstable; urgency=medium
+
+  [ Federico Ceratto ]
+  * Initial release (Closes: #793057)
+
+ -- Federico Ceratto <federico@debian.org>  Sun, 26 Aug 2018 20:42:31 +0100

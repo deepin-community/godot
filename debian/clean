@@ -1,0 +1,11 @@
+__pycache__/
+.sconf_temp/
+.scons_env.json
+.sconsign*.dblite
+config.log
+core/*.gen.*
+editor/doc/doc_data_class_path.gen.h
+editor/register_exporters.gen.cpp
+modules/register_module_types.gen.cpp
+platform/*/*.gen.h
+platform/register_platform_apis.gen.cpp

@@ -1,0 +1,49 @@
+From: Travis Wrightsman <travis@wrightsman.org>
+Date: Thu, 12 Dec 2024 15:48:58 -0800
+Subject: Fix wslay and recast compiler flags
+
+---
+ platform/server/detect.py | 8 +++++++-
+ platform/x11/detect.py    | 8 +++++++-
+ 2 files changed, 14 insertions(+), 2 deletions(-)
+
+diff --git a/platform/server/detect.py b/platform/server/detect.py
+index 7bd5a0f..419e81c 100644
+--- a/platform/server/detect.py
++++ b/platform/server/detect.py
+@@ -259,8 +259,14 @@ def configure(env):
+         # mbedTLS does not provide a pkgconfig config yet. See https://github.com/ARMmbed/mbedtls/issues/228
+         env.Append(LIBS=["mbedtls", "mbedcrypto", "mbedx509"])
+ 
++    if not env["builtin_recast"]:
++        env.Append(LIBS=["Recast"])
++        env.Prepend(CPPPATH=["/usr/include/recastnavigation"])
++
+     if not env["builtin_wslay"]:
+-        env.ParseConfig("pkg-config libwslay --cflags --libs")
++        # wslay in Debian does not have a pkg-config configuration
++        env.Prepend(CPPPATH=["/usr/include/wslay"])
++        env.Append(LIBS=["wslay"])
+ 
+     if not env["builtin_miniupnpc"]:
+         # No pkgconfig file so far, hardcode default paths.
+diff --git a/platform/x11/detect.py b/platform/x11/detect.py
+index 6390c26..fd9d90c 100644
+--- a/platform/x11/detect.py
++++ b/platform/x11/detect.py
+@@ -344,8 +344,14 @@ def configure(env):
+         # mbedTLS does not provide a pkgconfig config yet. See https://github.com/ARMmbed/mbedtls/issues/228
+         env.Append(LIBS=["mbedtls", "mbedcrypto", "mbedx509"])
+ 
++    if not env["builtin_recast"]:
++        env.Append(LIBS=["Recast"])
++        env.Prepend(CPPPATH=["/usr/include/recastnavigation"])
++
+     if not env["builtin_wslay"]:
+-        env.ParseConfig("pkg-config libwslay --cflags --libs")
++        # wslay in Debian does not have a pkg-config configuration
++        env.Prepend(CPPPATH=["/usr/include/wslay"])
++        env.Append(LIBS=["wslay"])
+ 
+     if not env["builtin_miniupnpc"]:
+         # No pkgconfig file so far, hardcode default paths.
