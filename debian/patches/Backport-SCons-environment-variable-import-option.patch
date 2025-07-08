@@ -1,0 +1,36 @@
+From: Travis Wrightsman <travis@wrightsman.org>
+Date: Tue, 10 Dec 2024 17:38:21 -0800
+Subject: Backport SCons environment variable import option
+
+Origin: backport: https://github.com/godotengine/godot/commit/ed52ac9b5df5bae8836b309f1d55f928ebc58481
+Forwarded: non-needed
+Applied-Upstream: 4.3
+---
+ SConstruct | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/SConstruct b/SConstruct
+index d0ffcde..7a16cd0 100644
+--- a/SConstruct
++++ b/SConstruct
+@@ -152,6 +152,7 @@ opts.Add(
+         False,
+     )
+ )
++opts.Add("import_env_vars", "A comma-separated list of environment variables to copy from the outer environment.", "")
+ opts.Add(BoolVariable("disable_3d", "Disable 3D nodes for a smaller executable", False))
+ opts.Add(BoolVariable("disable_advanced_gui", "Disable advanced GUI nodes and behaviors", False))
+ opts.Add(BoolVariable("modules_enabled_by_default", "If no, disable all modules except ones explicitly enabled", True))
+@@ -206,6 +207,12 @@ opts.Add("LINKFLAGS", "Custom flags for the linker")
+ # in following code (especially platform and custom_modules).
+ opts.Update(env_base)
+ 
++# Copy custom environment variables if set.
++if env_base["import_env_vars"]:
++    for env_var in str(env_base["import_env_vars"]).split(","):
++        if env_var in os.environ:
++            env_base["ENV"][env_var] = os.environ[env_var]
++
+ # Platform selection: validate input, and add options.
+ 
+ selected_platform = ""

@@ -1,0 +1,7 @@
+version=4
+opts=" \
+  repacksuffix=+ds, \
+  dversionmangle=auto \
+" \
+https://github.com/godotengine/godot/tags \
+https://github.com/godotengine/godot/archive/refs/tags/[-_]?v?(3\.\d[\-+\.:\~\da-zA-Z]*)-stable@ARCHIVE_EXT@
